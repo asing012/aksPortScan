@@ -20,6 +20,7 @@ def nmapScan(userHost,userPort): #to start nmap port scan
     except:
         print("Error: Try again, make sure the host is active", sys.exc_info()[0])
         sys.exit(0)
+
 def main(): #to set up parser and call nmapScan()
     parser = optparse.OptionParser('usage -H '+ '<target Host> -p <target Port>')
     parser.add_option('-H', dest='userHost', type='string', help='specify target host')
@@ -27,11 +28,9 @@ def main(): #to set up parser and call nmapScan()
     (options, args) = parser.parse_args()
     userHost = options.userHost
     userPort = str(options.userPort).split(',')
-    #print(userPort)
     if(userHost == None) | (userPort[0] == None):
         print(parser.usage)
         exit(0)
-    #nmapScan(userHost, userPort)
     for p in userPort:
         nmapScan(userHost,p)
 
